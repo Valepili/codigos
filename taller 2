@@ -1,0 +1,36 @@
+//Programa para encontrar la cantidad de dinero adecuada para comprar la casa de sus sueños
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int long total_cost;
+    int portion_down_payment;
+    int current_savings = 0; 
+    int r; 
+    int long portion_saved;
+    int return_annual;
+    int long annual_salary; 
+    int mensual_salary;
+    int semi_annual_raise; 
+    int numero_meses;
+    
+    cout <<"Ingrese su salario anual: ";
+    cin >> annual_salary;
+    cout <<"La porción del salario a ser ahorrada: "; 
+    cin >> portion_saved;
+    cout <<"El costo de tu casa soñada: ";
+    cin >> total_cost; 
+    cout <<"Número de meses a ahorrar: ";
+    cin >> numero_meses;
+    
+    portion_down_payment = total_cost * 0.25;
+    mensual_salary = annual_salary / 12;
+    return_annual = current_savings * r/ 12;
+    
+    
+    
+    return 0;
+}
+    
