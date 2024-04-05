@@ -1,38 +1,41 @@
 #include <iostream>
-using namespace std;
 
-int calculateMonthsToSave(float annualSalary, float portionSaved, float totalCost) {
-    float portionDownPayment = 0.25; // 25%
-    float currentSavings = 0;
-    float r = 0.04; // 4% de retorno anual de inversión
-    float monthlySalary = annualSalary / 12;
+using namespace std; 
+
+int calculateMonthsToSave (float annual_salary, float portion_saved, float total_cost){
+    float portion_down_payment = 0.25; 
+    float current_savings = 0;
+    float r = 0.04;
+    float month_salary = annual_salary /12; 
     int months = 0;
-
-    while (currentSavings < totalCost * portionDownPayment) {
-        currentSavings += currentSavings * r / 12; // retorno de inversión
-        currentSavings += monthlySalary * portionSaved; // porción del salario ahorrada
-        months++;
+    
+    while (current_savings < total_cost * portion_down_payment)
+    {
+        current_savings += current_savings * r / 12;
+        current_savings += month_salary * portion_saved; 
+        months ++;
     }
-
-    return months;
+    
+    return months; 
 }
 
-int main() {
-    float annualSalary, portionSaved, totalCost;
-
-    // Obtener entradas del usuario
-    cout << "Por favor, introduce tu salario anual: ";
-    cin >> annualSalary;
-    cout << "Por favor, introduce la fracción de tu salario que quieres ahorrar (en decimal): ";
-    cin >> portionSaved;
-    cout << "Por favor, introduce el costo total de la casa que deseas comprar: ";
-    cin >> totalCost;
-
-    // Calcular meses para ahorrar
-    int monthsToSave = calculateMonthsToSave(annualSalary, portionSaved, totalCost);
-
-    // Imprimir resultados
-    cout << "Número de meses necesarios para ahorrar para el pago inicial: " << monthsToSave << endl;
-
+int main ()
+{
+    float annual_salary;
+    float portion_saved;
+    float total_cost; 
+    
+    cout <<"Ingrese su salario anual: ";
+    cin >> annual_salary;
+    cout <<"Ingrese la fracción del salario para ahorrar en decimal: ";
+    cin >> portion_saved; 
+    cout <<"Ingrese el costo toal de la casa deseada: "; 
+    cin >> total_cost; 
+    
+    int months_to_save = calculateMonthsToSave (annual_salary, portion_saved, total_cost);
+    
+    cout <<"Número de meses necesarios para ahorrar el pago inicial: " << months_to_save << endl; 
+    
     return 0;
+    
 }
