@@ -1,49 +1,38 @@
 #include <iostream>
+using namespace std;
 
-using namespace std; 
-
-int calculateMonthsToSave (float annual_salary, float portion_saved, float total_cost){
-    float portion_down_payment = 0.25; 
+int mesesParaPagoInicialConAumento(float annual_salary, float total_cost, float semi_annual_raise, float portion_saved) {
+    float portion_down_payment = 0.25;
     float current_savings = 0;
     float r = 0.04;
-    float month_salary = annual_salary /12; 
+    float monthly_salary = annual_salary / 12;
     int months = 0;
-    float semi_annual_raise = 0;
-    
-    while (current_savings < total_cost * portion_down_payment)
-    {
-        if (months % 6 == 0 and months > 0){
-            annual_salary *= ( 1 + semi_annual_raise);
-            month_salary = annual_salary /12; 
+
+    while (current_savings < total_cost * portion_down_payment) {
+        current_savings += current_savings * r / 12 + monthly_salary * portion_saved;
+        months++;
+        if (months % 6 == 0) {
+            annual_salary *= (1 + semi_annual_raise);
+            monthly_salary = annual_salary / 12;
         }
-        
-        current_savings += current_savings * r / 12;
-        current_savings += month_salary * portion_saved; 
-        months ++;
     }
-    
-    return months; 
+
+    return months;
 }
 
-int main ()
-{
-    float annual_salary;
-    float portion_saved;
-    float total_cost; 
-    float semi_annual_raise;
-    
-    cout <<"Ingrese su salario anual: ";
+int main() {
+    float annual_salary, portion_saved, total_cost, semi_annual_raise;
+    cout << "Introduce tu salario anual inicial: ";
     cin >> annual_salary;
-    cout <<"Ingrese la fracción del salario para ahorrar en decimal: ";
-    cin >> portion_saved; 
-    cout <<"Ingrese el costo toal de la casa deseada: "; 
-    cin >> total_cost; 
-    cout <<"Ingrese el aumento del salario semestral como decimal: ";
-    cin >> semi_annual_raise; 
-    
-    int months_to_save = calculateMonthsToSave (annual_salary, portion_saved, total_cost);
-    
-    cout <<"Número de meses necesarios para ahorrar el pago inicial: " << months_to_save << endl; 
-    
+    cout << "Introduce el porcentaje de tu salario a ahorrar, como decimal: ";
+    cin >> portion_saved;
+    cout << "Introduce el costo de tu casa soñada: ";
+    cin >> total_cost;
+    cout << "Introduce el aumento de salario semestral, como decimal: ";
+    cin >> semi_annual_raise;
+
+    int num_meses = mesesParaPagoInicialConAumento(annual_salary, total_cost, semi_annual_raise, portion_saved);
+    cout << "Número de meses: " << num_meses << endl;
+
     return 0;
 }
