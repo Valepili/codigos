@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int calculateMonthsToSave(float annualSalary, float portionSaved, float totalCost) {
+    float portionDownPayment = 0.25; // 25%
+    float currentSavings = 0;
+    float r = 0.04; // 4% de retorno anual de inversión
+    float monthlySalary = annualSalary / 12;
+    int months = 0;
+
+    while (currentSavings < totalCost * portionDownPayment) {
+        currentSavings += currentSavings * r / 12; // retorno de inversión
+        currentSavings += monthlySalary * portionSaved; // porción del salario ahorrada
+        months++;
+    }
+
+    return months;
+}
+
+int main() {
+    float annualSalary, portionSaved, totalCost;
+
+    // Obtener entradas del usuario
+    cout << "Por favor, introduce tu salario anual: ";
+    cin >> annualSalary;
+    cout << "Por favor, introduce la fracción de tu salario que quieres ahorrar (en decimal): ";
+    cin >> portionSaved;
+    cout << "Por favor, introduce el costo total de la casa que deseas comprar: ";
+    cin >> totalCost;
+
+    // Calcular meses para ahorrar
+    int monthsToSave = calculateMonthsToSave(annualSalary, portionSaved, totalCost);
+
+    // Imprimir resultados
+    cout << "Número de meses necesarios para ahorrar para el pago inicial: " << monthsToSave << endl;
+
+    return 0;
+}
