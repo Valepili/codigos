@@ -1,0 +1,23 @@
+def meses_para_pago_inicial_con_aumento(annual_salary, total_cost, semi_annual_raise, portion_saved):
+    portion_down_payment = 0.25
+    current_savings = 0
+    r = 0.04
+    monthly_salary = annual_salary / 12
+    months = 0
+    
+    while current_savings < total_cost * portion_down_payment:
+        current_savings += current_savings * r / 12 + monthly_salary * portion_saved
+        months += 1
+        if months % 6 == 0:
+            annual_salary *= (1 + semi_annual_raise)
+            monthly_salary = annual_salary / 12
+    
+    return months
+
+annual_salary = float(input("Introduce tu salario anual inicial: "))
+portion_saved = float(input("Introduce el porcentaje de tu salario a ahorrar, como decimal: "))
+total_cost = float(input("Introduce el costo de tu casa soñada: "))
+semi_annual_raise = float(input("Introduce el aumento de salario semestral, como decimal: "))
+
+num_meses = meses_para_pago_inicial_con_aumento(annual_salary, total_cost, semi_annual_raise, portion_saved)
+print("Número de meses:", num_meses)
